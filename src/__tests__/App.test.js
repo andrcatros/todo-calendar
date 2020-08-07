@@ -2,8 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import App from "../components/App";
 
-test("renders learn react link", () => {
+it("renders placeholder text", () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const placeholder = getByText("this is placeholder text");
+  expect(placeholder).toBeInTheDocument();
 });

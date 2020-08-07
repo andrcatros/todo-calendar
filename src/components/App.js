@@ -1,13 +1,13 @@
 import React from "react";
+import Main from "../components/main";
 
 import "../styles/App.css";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <div style={{ borderStyle: "solid" }}> navbar </div>
-      <div style={{ borderStyle: "solid" }}> sidebar </div>
-      <div style={{ borderStyle: "solid" }}> main </div>
+      <Main />
+      <div>this is placeholder text</div>
     </div>
   );
 }
