@@ -1,24 +1,16 @@
 import React from "react";
 import Task from "./task";
+import groupByDate from "../utils/group-by-date";
 
 const TaskList = ({ tasks }) => {
+  const tasksArray = groupByDate(tasks);
+
   return (
     <div className="TaskList" data-testid="task-list-test">
-      {tasks
-        .sort(
-          (a, b) =>
-            parseInt(a.deadline.slice(0, 16).replace(/\D/g, "")) -
-            parseInt(b.deadline.slice(0, 16).replace(/\D/g, ""))
-        )
-        .map((task, i) => (
-          <Task
-            id={task.id}
-            key={task.id}
-            description={task.description}
-            deadline={task.deadline}
-            index={i}
-          />
-        ))}
+      <h3>Your tasks:</h3>
+      {tasksArray.map((taskObj, i) => (
+        <Task key={i} date={taskObj.tasks[0].deadline} tasks={taskObj.tasks} />
+      ))}
     </div>
   );
 };
