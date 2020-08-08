@@ -1,8 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import TaskList from "../components/task-list";
 
 describe("renders with correct props", () => {
+  afterEach(cleanup);
+
   const mockTasks = [
     {
       id: 1,
@@ -25,7 +27,7 @@ describe("renders with correct props", () => {
     {
       id: 12,
       description: "wish Jan happy birthday",
-      deadline: "2012-05-05T10:35:40Z",
+      deadline: "2012-01-01T10:35:40Z",
       completed: false,
     },
   ];
@@ -39,9 +41,17 @@ describe("renders with correct props", () => {
     expect(getByText(/renew insurance/)).toBeTruthy();
     expect(getByText(/wish Jan happy birthday/)).toBeTruthy();
 
-    expect(getByText(/2012-04-05T10:30:40Z/)).toHaveClass("task-deadline");
-    expect(getByText(/2012-05-05T10:35:40Z/)).toHaveClass("task-deadline");
+    expect(getByText(/Thu Apr 12/)).toHaveClass("task-deadline");
+    expect(getByText(/Sun Jan 01/)).toHaveClass("task-deadline");
   });
 
-  xtest("renders elements in order", () => {});
+  test("renders elements in order", () => {
+    const { getByTestId } = render(<TaskList tasks={mockTasks} />);
+    const taskList = getByTestId("task-list-test");
+
+    const firstTask = getByTestId("task-0");
+
+    expect(taskList.children.length).toBe(4);
+    expect(firstTask.textContent).toContain("wish Jan happy birthday");
+  });
 });

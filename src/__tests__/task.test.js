@@ -18,7 +18,7 @@ describe("renders with correct props", () => {
 
     expect(getByText(/read a book/)).toBeTruthy();
     expect(getByText(/read a book/)).toHaveClass("task-description");
-    expect(getByText(/2012-04-05T10:30:40Z/)).toHaveClass("task-deadline");
+    expect(getByText(/Thu Apr 05/)).toHaveClass("task-deadline");
   });
 
   xtest("renders elements as input", () => {});
