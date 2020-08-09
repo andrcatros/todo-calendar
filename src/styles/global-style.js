@@ -7,6 +7,7 @@ body {
     font-size: 12px;
     line-height: 1.5;
     padding-left: 30px;
+    padding-right: 30px;
 }`;
 
 export default GlobalStyle;

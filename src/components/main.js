@@ -6,7 +6,10 @@ import { tasks } from "../data/todo.json";
 
 const Main = (props) => {
   return (
-    <div className="Main">
+    <div
+      className="Main"
+      style={{ display: "flex", flexDirection: "row-reverse" }}
+    >
       <TaskList tasks={tasks} />
       <Calendar />
     </div>

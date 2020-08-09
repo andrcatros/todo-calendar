@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import groupByTime from "../utils/group-by-time";
 
 const Task = (props) => {
   const { tasks, date } = props;
