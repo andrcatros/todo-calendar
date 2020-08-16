@@ -4,14 +4,11 @@ import Calendar from "../components/calendar";
 
 import { tasks } from "../data/todo.json";
 
-const Main = (props) => {
+const Main = ({ date }) => {
   return (
-    <div
-      className="Main"
-      style={{ display: "flex", flexDirection: "row-reverse" }}
-    >
-      <TaskList tasks={tasks} />
-      <Calendar />
+    <div className="Main" style={{ display: "flex", flexDirection: "row" }}>
+      <TaskList date={date} tasks={tasks} />
+      <Calendar date={date} />
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import React from "react";
 import Task from "./task";
-import groupByDate from "../utils/group-by-date";
 
-const TaskList = ({ tasks }) => {
-  const tasksArray = groupByDate(tasks);
+import groupByDate from "../utils/group-by-date";
+import getActiveTasks from "./getActiveTasks";
+
+const TaskList = ({ date, tasks }) => {
+  const first = getActiveTasks(date, tasks);
+  const tasksArray = groupByDate(first);
 
   return (
     <div
@@ -14,6 +17,7 @@ const TaskList = ({ tasks }) => {
         paddingLeft: "20px",
         paddingRight: "10px",
         borderStyle: "solid",
+        width: "20%",
       }}
     >
       <h3>Upcoming:</h3>

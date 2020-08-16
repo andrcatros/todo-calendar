@@ -1,8 +1,31 @@
 import React from "react";
-import moment from "moment";
 
-const DayTile = (props) => {
-  return <div className="DayTile"> {props.day} </div>;
+const DayTile = ({ day }) => {
+  if (day === "x") {
+    return (
+      <div
+        clasName="DayTile"
+        style={{
+          width: "150px",
+          height: "150px",
+          borderStyle: "solid",
+          color: "gray",
+          backgroundColor: "silver",
+        }}
+      >
+        {"    "}
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className="DayTile"
+        style={{ width: "150px", height: "150px", borderStyle: "solid" }}
+      >
+        {day}
+      </div>
+    );
+  }
 };
 
 export default DayTile;

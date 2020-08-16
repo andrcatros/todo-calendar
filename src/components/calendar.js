@@ -2,29 +2,57 @@ import React from "react";
 import moment from "moment";
 
 import DayTile from "./day-tile";
-import StyledTableHead from "../styles/table-head-style";
+import getCalendarGrid from "./getCalendarGrid";
 
-const Calendar = (props) => {
-  const weekdayshortname = moment.weekdaysShort();
+const Calendar = ({ date }) => {
+  const grid = getCalendarGrid(date);
+  const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Say", "Sun"];
+
+  // generate day tiles
 
   return (
-    <div className="Calendar">
-      {console.log(weekdayshortname)}
-      <h3>Calendar</h3>
-      <StyledTableHead
+    <div
+      className="calendar"
+      style={{ padding: "50px", display: "flex", flexDirection: "column" }}
+    >
+      <div className="calendar-month">
+        <h2>{moment(date).format("MMMM YYYY")}</h2>
+      </div>
+      <div
+        className="calendar-head"
         style={{
           display: "flex",
-          flexDirection: "rows",
+          flexDirection: "row",
+          textAlign: "center",
+          paddingBottom: "10px",
         }}
       >
-        {moment.weekdaysShort().map((day) => (
-          <th id="cell" style={{ borderStyle: "solid" }}>
-            {" "}
-            {day}{" "}
-          </th>
+        {weekdays.map((d) => (
+          <div style={{ width: "150px" }} key={d}>
+            {d}
+          </div>
         ))}
-      </StyledTableHead>
-      <DayTile day={0} />
+      </div>
+      <div
+        className="calendar-body"
+        style={{
+          borderStyle: "solid",
+          borderWidth: "thin",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {grid.map((row) => (
+          <div
+            className="calendar-row"
+            style={{ display: "flex", flexDirection: "row" }}
+          >
+            {row.map((day, i) => (
+              <DayTile day={day} />
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
